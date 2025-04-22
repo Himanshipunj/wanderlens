@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { FaBars, FaTimes, FaHome, FaHeart, FaHiking } from "react-icons/fa" // Import FaHiking for Activities
+import { FaBars, FaTimes, FaHome, FaHeart, FaHiking } from "react-icons/fa" 
 import Image from "next/image"
 
 
@@ -17,7 +17,7 @@ export default function Navbar() {
 
   const navLinks = [
     { href: "/", label: "Home", icon: FaHome },
-    { href: "/activities", label: "Activities", icon: FaHiking }, // Added icon for Activities
+    { href: "/activities", label: "Activities", icon: FaHiking }, 
     { href: "/favorites", label: "Favorites", icon: FaHeart },
   ]
 

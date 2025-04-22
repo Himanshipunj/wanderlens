@@ -1,28 +1,28 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import ActivityGrid from "@components/ActivityGrid"
-import EmptyState from "@components/EmptyState"
+import { useEffect, useState } from "react";
+import ActivityGrid from "../components/ActivityGrid";
+import EmptyState from "../components/EmptyState";
 
 export default function FavoritesPage() {
-  const [favorites, setFavorites] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+  const [favorites, setFavorites] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Load favorites from localStorage
-    const storedFavorites = localStorage.getItem("wanderlens-favorites")
+    const storedFavorites = localStorage.getItem("wanderlens-favorites");
     if (storedFavorites) {
-      setFavorites(JSON.parse(storedFavorites))
+      setFavorites(JSON.parse(storedFavorites));
     }
-    setIsLoading(false)
-  }, [])
+    setIsLoading(false);
+  }, []);
 
   if (isLoading) {
     return (
       <div className="container mx-auto px-4 py-16 flex justify-center">
         <div className="animate-pulse">Loading your favorites...</div>
       </div>
-    )
+    );
   }
 
   return (
@@ -40,5 +40,5 @@ export default function FavoritesPage() {
         />
       )}
     </div>
-  )
+  );
 }

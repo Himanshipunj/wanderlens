@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server"
+import { NextResponse } from "next/server";
 
 /**
  * Handler for GET /api/categories
@@ -6,10 +6,13 @@ import { NextResponse } from "next/server"
 export async function GET() {
   try {
     // Return mock data
-    return NextResponse.json(getMockCategories())
+    return NextResponse.json(getMockCategories());
   } catch (error) {
-    console.error("Error in /api/categories:", error)
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 })
+    console.error("Error in /api/categories:", error);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }
 
@@ -24,5 +27,5 @@ function getMockCategories() {
     "Nature",
     "Urban Exploration",
     "Wellness",
-  ]
+  ];
 }

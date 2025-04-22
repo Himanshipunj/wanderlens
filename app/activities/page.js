@@ -1,6 +1,6 @@
-import { getActivities } from "@lib/api";
-import ActivityGrid from "@components/ActivityGrid";
-import FilterControls from "@components/FilterControls";
+import { getActivities } from "../lib/api";
+import ActivityGrid from "../components/ActivityGrid";
+import FilterControls from "../components/FilterControls";
 
 export const metadata = {
   title: "Browse Activities - WanderLens",

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server"
+import { NextResponse } from "next/server";
 
 /**
  * Handler for GET /api/activities/featured
@@ -6,14 +6,17 @@ import { NextResponse } from "next/server"
 export async function GET(request) {
   try {
     // Get query parameters
-    const { searchParams } = new URL(request.url)
-    const limit = Number.parseInt(searchParams.get("limit") || "4", 10)
+    const { searchParams } = new URL(request.url);
+    const limit = Number.parseInt(searchParams.get("limit") || "4", 10);
 
     // Return mock data
-    return NextResponse.json(getMockFeaturedActivities(limit))
+    return NextResponse.json(getMockFeaturedActivities(limit));
   } catch (error) {
-    console.error("Error in /api/activities/featured:", error)
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 })
+    console.error("Error in /api/activities/featured:", error);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }
 
@@ -83,7 +86,8 @@ function getMockFeaturedActivities(limit = 4) {
       category: "Cultural",
       relevanceScore: 10,
       image: "/ancienttemple.jpg",
-      description: "Discover ancient temples and learn about their historical significance with expert archaeologists.",
+      description:
+        "Discover ancient temples and learn about their historical significance with expert archaeologists.",
       location: "Siem Reap, Cambodia",
       price: 85,
       duration: "Full day",
@@ -95,7 +99,9 @@ function getMockFeaturedActivities(limit = 4) {
         count: 176,
       },
     },
-  ]
+  ];
 
-  return mockActivities.sort((a, b) => b.relevanceScore - a.relevanceScore).slice(0, limit)
+  return mockActivities
+    .sort((a, b) => b.relevanceScore - a.relevanceScore)
+    .slice(0, limit);
 }

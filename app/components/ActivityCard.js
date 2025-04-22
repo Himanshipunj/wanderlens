@@ -1,4 +1,4 @@
-// components/ActivityCard.jsx
+// components/ActivityCard.js
 "use client"
 
 import { useState, useEffect } from "react"

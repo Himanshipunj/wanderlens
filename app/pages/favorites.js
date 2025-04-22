@@ -1,51 +1,59 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Head from "next/head"
-import { FaHeart, FaHeartBroken } from "react-icons/fa"
-import Layout from "@components/Layout"
-import ActivityCard from "@components/ActivityCard"
+import { useState, useEffect } from "react";
+import Head from "next/head";
+import { FaHeart, FaHeartBroken } from "react-icons/fa";
+import Layout from "../components/Layout";
+import ActivityCard from "../components/ActivityCard";
 
 export default function Favorites() {
-  const [favorites, setFavorites] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+  const [favorites, setFavorites] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Load favorites from localStorage
     const loadFavorites = () => {
       try {
-        const savedFavorites = localStorage.getItem("wanderlens-favorites")
+        const savedFavorites = localStorage.getItem("wanderlens-favorites");
         if (savedFavorites) {
-          setFavorites(JSON.parse(savedFavorites))
+          setFavorites(JSON.parse(savedFavorites));
         }
       } catch (error) {
-        console.error("Error loading favorites:", error)
+        console.error("Error loading favorites:", error);
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
-    }
+    };
 
-    loadFavorites()
-  }, [])
+    loadFavorites();
+  }, []);
 
   const removeFavorite = (activityId) => {
-    const updatedFavorites = favorites.filter((activity) => activity.id !== activityId)
-    setFavorites(updatedFavorites)
+    const updatedFavorites = favorites.filter(
+      (activity) => activity.id !== activityId
+    );
+    setFavorites(updatedFavorites);
 
     // Update localStorage
-    localStorage.setItem("wanderlens-favorites", JSON.stringify(updatedFavorites))
-  }
+    localStorage.setItem(
+      "wanderlens-favorites",
+      JSON.stringify(updatedFavorites)
+    );
+  };
 
   const clearAllFavorites = () => {
-    setFavorites([])
-    localStorage.removeItem("wanderlens-favorites")
-  }
+    setFavorites([]);
+    localStorage.removeItem("wanderlens-favorites");
+  };
 
   return (
     <Layout>
       <Head>
         <title>My Favorites | WanderLens</title>
-        <meta name="description" content="Your saved favorite travel activities" />
+        <meta
+          name="description"
+          content="Your saved favorite travel activities"
+        />
       </Head>
 
       <div className="container mx-auto px-4 py-8">
@@ -81,11 +89,15 @@ export default function Favorites() {
         ) : (
           <div className="text-center py-16 bg-gray-50 rounded-lg">
             <FaHeart className="mx-auto text-gray-300 text-5xl mb-4" />
-            <h2 className="text-2xl font-semibold text-gray-600 mb-2">No favorites yet</h2>
-            <p className="text-gray-500 mb-6">Save your favorite activities to find them here</p>
+            <h2 className="text-2xl font-semibold text-gray-600 mb-2">
+              No favorites yet
+            </h2>
+            <p className="text-gray-500 mb-6">
+              Save your favorite activities to find them here
+            </p>
           </div>
         )}
       </div>
     </Layout>
-  )
+  );
 }

@@ -4,7 +4,7 @@ import ActivityCard from "./ActivityCard"
 import Link from "next/link"
 import { FaArrowRight } from "react-icons/fa"
 import { useEffect, useState } from "react"
-import { getFeaturedActivities } from "@/lib/api"
+import { getFeaturedActivities } from "../lib/api"
 
 export default function FeaturedActivities() {
   const [activities, setActivities] = useState([])

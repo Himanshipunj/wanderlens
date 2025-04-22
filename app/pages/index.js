@@ -1,18 +1,19 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Head from "next/head"
-import Link from "next/link"
-import { FaCompass } from "react-icons/fa"
-import Layout from "../components/Layout"
-import ActivityCard from "../components/ActivityCard"
-import SearchBar from "../components/SearchBar"
-import RelevanceFilter from "../components/RelevanceFilter"
+import { useState, useEffect } from "react";
+import Head from "next/head";
+import Link from "next/link";
+import { FaCompass } from "react-icons/fa";
+import Layout from "../components/Layout";
+import ActivityCard from "../components/ActivityCard";
+import SearchBar from "../components/SearchBar";
+import RelevanceFilter from "../components/RelevanceFilter";
 
 export default function Home({ featuredActivities }) {
-  const [filteredActivities, setFilteredActivities] = useState(featuredActivities)
-  const [minRelevance, setMinRelevance] = useState(1)
-  const [searchTerm, setSearchTerm] = useState("")
+  const [filteredActivities, setFilteredActivities] =
+    useState(featuredActivities);
+  const [minRelevance, setMinRelevance] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const filtered = featuredActivities.filter((activity) => {
@@ -21,25 +22,28 @@ export default function Home({ featuredActivities }) {
         (searchTerm === "" ||
           activity.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
           activity.category.toLowerCase().includes(searchTerm.toLowerCase()))
-      )
-    })
+      );
+    });
 
-    setFilteredActivities(filtered)
-  }, [minRelevance, searchTerm, featuredActivities])
+    setFilteredActivities(filtered);
+  }, [minRelevance, searchTerm, featuredActivities]);
 
   const handleSearch = (term) => {
-    setSearchTerm(term)
-  }
+    setSearchTerm(term);
+  };
 
   const handleRelevanceChange = (value) => {
-    setMinRelevance(value)
-  }
+    setMinRelevance(value);
+  };
 
   return (
     <Layout>
       <Head>
         <title>WanderLens | Discover Travel Activities</title>
-        <meta name="description" content="Discover amazing travel activities around the world" />
+        <meta
+          name="description"
+          content="Discover amazing travel activities around the world"
+        />
         <link rel="icon" href="/wanderlens.jpg" type="image/jpeg" />
       </Head>
 
@@ -49,7 +53,8 @@ export default function Home({ featuredActivities }) {
             Unleash Your Inner Explorer
           </h1>
           <p className="text-xl md:text-2xl mb-10 font-light">
-            Discover curated travel activities and create unforgettable memories.
+            Discover curated travel activities and create unforgettable
+            memories.
           </p>
           <div className="max-w-xl mx-auto bg-white rounded-full p-3 md:p-4 shadow-lg flex items-center">
             <SearchBar onSearch={handleSearch} />
@@ -63,7 +68,10 @@ export default function Home({ featuredActivities }) {
             Top Picks for Your Next Adventure
           </h2>
           <div className="w-full md:w-64">
-            <RelevanceFilter minRelevance={minRelevance} onChange={handleRelevanceChange} />
+            <RelevanceFilter
+              minRelevance={minRelevance}
+              onChange={handleRelevanceChange}
+            />
           </div>
         </div>
 
@@ -81,8 +89,8 @@ export default function Home({ featuredActivities }) {
             <button
               className="px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition shadow-md"
               onClick={() => {
-                setMinRelevance(1)
-                setSearchTerm("")
+                setMinRelevance(1);
+                setSearchTerm("");
               }}
             >
               Reset Filters
@@ -101,13 +109,13 @@ export default function Home({ featuredActivities }) {
         </div>
       </div>
     </Layout>
-  )
+  );
 }
 
 export async function getServerSideProps() {
   try {
     // This would be replaced with the actual API call to SharpAPI
-    // For now, we'll use mock data
+    // For now, I'll use mock data
     const featuredActivities = [
       {
         id: 1,
@@ -115,7 +123,8 @@ export async function getServerSideProps() {
         category: "Outdoor Adventure",
         relevanceScore: 9,
         image: "/placeholder.svg?height=300&width=400",
-        description: "Immerse yourself in stunning landscapes on this guided mountain adventure.",
+        description:
+          "Immerse yourself in stunning landscapes on this guided mountain adventure.",
       },
       {
         id: 2,
@@ -123,7 +132,8 @@ export async function getServerSideProps() {
         category: "Cultural",
         relevanceScore: 8,
         image: "/placeholder.svg?height=300&width=400",
-        description: "Uncover the hidden stories and iconic landmarks of the city.",
+        description:
+          "Uncover the hidden stories and iconic landmarks of the city.",
       },
       {
         id: 3,
@@ -131,7 +141,8 @@ export async function getServerSideProps() {
         category: "Water Activities",
         relevanceScore: 7,
         image: "/placeholder.svg?height=300&width=400",
-        description: "Witness the sky ablaze with color as you sail into the sunset.",
+        description:
+          "Witness the sky ablaze with color as you sail into the sunset.",
       },
       {
         id: 4,
@@ -139,7 +150,8 @@ export async function getServerSideProps() {
         category: "Food & Drink",
         relevanceScore: 6,
         image: "/placeholder.svg?height=300&width=400",
-        description: "Master the art of traditional cooking with local ingredients.",
+        description:
+          "Master the art of traditional cooking with local ingredients.",
       },
       {
         id: 5,
@@ -147,7 +159,8 @@ export async function getServerSideProps() {
         category: "Nature & Wildlife",
         relevanceScore: 10,
         image: "/placeholder.svg?height=300&width=400",
-        description: "Embark on an unforgettable journey to encounter majestic wildlife.",
+        description:
+          "Embark on an unforgettable journey to encounter majestic wildlife.",
       },
       {
         id: 6,
@@ -155,21 +168,22 @@ export async function getServerSideProps() {
         category: "Arts & Culture",
         relevanceScore: 5,
         image: "/placeholder.svg?height=300&width=400",
-        description: "Delve into the world of art and history with insightful guidance.",
+        description:
+          "Delve into the world of art and history with insightful guidance.",
       },
-    ]
+    ];
 
     return {
       props: {
         featuredActivities,
       },
-    }
+    };
   } catch (error) {
-    console.error("Error fetching data:", error)
+    console.error("Error fetching data:", error);
     return {
       props: {
         featuredActivities: [],
       },
-    }
+    };
   }
 }
