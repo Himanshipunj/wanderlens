@@ -43,7 +43,7 @@ async function fetchAPI(endpoint, options = {}) {
  * @param {Object} params - Filter parameters
  * @returns {Promise<Array>} - Activities array
  */
-export async function getActivities(params = {}) {
+async function getActivities(params = {}) {
   try {
     // Build query string from params
     const queryParams = new URLSearchParams();
@@ -74,7 +74,7 @@ export async function getActivities(params = {}) {
  * @param {string} id - Activity ID
  * @returns {Promise<Object|null>} - Activity object or null if not found
  */
-export async function getActivityById(id) {
+async function getActivityById(id) {
   try {
     // Make API request to our Next.js API route
     const activity = await fetchAPI(`/activities/${id}`, {
@@ -95,8 +95,7 @@ export async function getActivityById(id) {
  * @param {number} limit - Maximum number of activities to return
  * @returns {Promise<Array>} - Featured activities array
  */
-export async function getFeaturedActivities(limit = 16) {
-  // Changed from 4 to 16
+async function getFeaturedActivities(limit = 16) {
   try {
     const activities = await fetchAPI(`/activities/featured?limit=${limit}`, {
       method: "GET",
@@ -114,7 +113,7 @@ export async function getFeaturedActivities(limit = 16) {
  * Get activity categories
  * @returns {Promise<Array>} - Categories array
  */
-export async function getCategories() {
+async function getCategories() {
   try {
     // Make API request to our Next.js API route
     const categories = await fetchAPI(`/categories`, {
